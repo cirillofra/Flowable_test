@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.collibra.com/apiv2">
+  <process id="ADL_NEW_TERM_EMAIL_NOTIFY_GDO_1" name="ADL_NEW_TERM_EMAIL_NOTIFY_GDO_1" isExecutable="true">
+    <documentation>Semantic labeling Term Approval workflow: 
+starting point of the process is a new Term in “UNICREDIT GROUP &gt; GLOBAL &gt; GLOBAL &gt; Semantic Label" community into 'Content Vocabulary' glossary as Business Term. 
+Terms are forwarded for approval and then notified via email to proper recipients in GDO role responsibility (Semantic Label Approver) [status: Candidate&gt;Under review]</documentation>
+    <startEvent id="timerstartevent1" name="Timer start">
+      <timerEventDefinition>
+        <timeCycle>0 * * ? * *</timeCycle>
+      </timerEventDefinition>
+    </startEvent>
+    <scriptTask id="scripttask1" name="Global Variable" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script><![CDATA[		import com.collibra.dgc.core.api.dto.instance.asset.FindAssetsRequest
+		import com.collibra.dgc.core.api.dto.meta.status.FindStatusesRequest
+		import com.collibra.dgc.core.api.dto.MatchMode
+		import com.collibra.dgc.core.api.dto.meta.assettype.FindAssetTypesRequest
+		import com.collibra.dgc.core.api.dto.instance.community.FindCommunitiesRequest
+		import com.collibra.dgc.core.api.dto.instance.domain.FindDomainsRequest
+		import com.collibra.dgc.core.api.dto.meta.relationtype.FindRelationTypesRequest
+		import com.collibra.dgc.core.api.dto.instance.relation.FindRelationsRequest
+		import com.collibra.dgc.core.api.dto.instance.domain.FindDomainsRequest
+		import com.collibra.dgc.core.api.dto.instance.responsibility.FindResponsibilitiesRequest
+		import com.collibra.dgc.core.api.dto.user.FindUsersRequest
+		import com.collibra.dgc.core.api.dto.role.FindRolesRequest
+		
+		loggerApi.info("Start workflow ADL_NEW_TERM_EMAIL_NOTIFY_GDO_1")
+				
+		def statusCandidateInfo = statusApi.findStatuses(FindStatusesRequest.builder()
+			.name("Candidate")
+			.nameMatchMode(MatchMode.valueOf("EXACT"))
+			.build()).getResults()
+						
+		loggerApi.info("statusCandidateInfo is : ${statusCandidateInfo}")
+		
+		def statusCandidateUuid = ""
+		
+		]]></script>
+    </scriptTask>
+    <sequenceFlow id="flow1" sourceRef="timerstartevent1" targetRef="scripttask1"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_ADL_NEW_TERM_EMAIL_NOTIFY_GDO_1">
+    <bpmndi:BPMNPlane bpmnElement="ADL_NEW_TERM_EMAIL_NOTIFY_GDO_1" id="BPMNPlane_ADL_NEW_TERM_EMAIL_NOTIFY_GDO_1">
+      <bpmndi:BPMNShape bpmnElement="timerstartevent1" id="BPMNShape_timerstartevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="230.0" y="240.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="330.0" y="230.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="710.0" y="240.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="265.0" y="257.0"></omgdi:waypoint>
+        <omgdi:waypoint x="330.0" y="257.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
