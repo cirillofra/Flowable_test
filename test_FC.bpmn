@@ -33,6 +33,7 @@ Terms are forwarded for approval and then notified via email to proper recipient
 		loggerApi.info("statusCandidateInfo is : ${statusCandidateInfo}")
 		
 		def statusCandidateUuid = ""
+		def testGithub = "Test Test Test"
 		
 		]]></script>
     </scriptTask>
