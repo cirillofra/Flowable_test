@@ -39,21 +39,39 @@ Terms are forwarded for approval and then notified via email to proper recipient
     </scriptTask>
     <sequenceFlow id="flow1" sourceRef="timerstartevent1" targetRef="scripttask1"></sequenceFlow>
     <endEvent id="endevent1" name="End"></endEvent>
+    <userTask id="usertask1" name="Test1">
+      <extensionElements>
+        <activiti:formProperty id="test" name="test" type="long" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow2" sourceRef="scripttask1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="usertask1" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_ADL_NEW_TERM_EMAIL_NOTIFY_GDO_1">
     <bpmndi:BPMNPlane bpmnElement="ADL_NEW_TERM_EMAIL_NOTIFY_GDO_1" id="BPMNPlane_ADL_NEW_TERM_EMAIL_NOTIFY_GDO_1">
       <bpmndi:BPMNShape bpmnElement="timerstartevent1" id="BPMNShape_timerstartevent1">
-        <omgdc:Bounds height="35.0" width="35.0" x="230.0" y="240.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="220.0" y="235.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
-        <omgdc:Bounds height="55.0" width="105.0" x="330.0" y="230.0"></omgdc:Bounds>
+        <omgdc:Bounds height="65.0" width="115.0" x="320.0" y="220.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="710.0" y="240.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="490.0" y="230.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
-        <omgdi:waypoint x="265.0" y="257.0"></omgdi:waypoint>
-        <omgdi:waypoint x="330.0" y="257.0"></omgdi:waypoint>
+        <omgdi:waypoint x="255.0" y="252.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="252.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="435.0" y="252.0"></omgdi:waypoint>
+        <omgdi:waypoint x="490.0" y="257.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="595.0" y="257.0"></omgdi:waypoint>
+        <omgdi:waypoint x="710.0" y="257.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
