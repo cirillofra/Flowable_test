@@ -35,6 +35,11 @@ Terms are forwarded for approval and then notified via email to proper recipient
 		def statusCandidateUuid = ""
 		def testGithub = "Test Test Test"
 		
+
+		def testGithub1 = "Test1 Test Test"
+		def testGithub2 = "Test2 Test Test"
+		def testGithub3 = "Test3 Test Test"
+		
 		]]></script>
     </scriptTask>
     <sequenceFlow id="flow1" sourceRef="timerstartevent1" targetRef="scripttask1"></sequenceFlow>
@@ -42,6 +47,11 @@ Terms are forwarded for approval and then notified via email to proper recipient
     <userTask id="usertask1" name="Test1">
       <extensionElements>
         <activiti:formProperty id="test" name="test" type="long" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask2" name="Test2">
+      <extensionElements>
+        <activiti:formProperty id="test2" name="test2" type="long" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow2" sourceRef="scripttask1" targetRef="usertask1"></sequenceFlow>
