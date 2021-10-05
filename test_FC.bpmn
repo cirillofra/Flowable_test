@@ -50,7 +50,7 @@ Terms are forwarded for approval and then notified via email to proper recipient
     </userTask>
     <userTask id="usertask2" name="Test2">
       <extensionElements>
-        <activiti:formProperty id="test2" name="test2" type="long"></activiti:formProperty>
+        <activiti:formProperty id="test4" name="test4" type="long"></activiti:formProperty>
         <activiti:formProperty id="francesco TestGit" name="fra test git" type="string"></activiti:formProperty>
       </extensionElements>
     </userTask>
